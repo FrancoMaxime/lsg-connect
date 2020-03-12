@@ -1,0 +1,14 @@
+Description="Infinite loop to tell the lsg-web server the rpi is online"
+
+Wants=network.target
+After=syslog.target network-online.target
+
+[Service]
+Type=simple
+ExecStart=python3 /home/pi/Documents/lsg-connect/lsg_connect.py
+Restart=on-failure
+RestartSec=10
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target
